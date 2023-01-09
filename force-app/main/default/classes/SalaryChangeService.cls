@@ -8,9 +8,10 @@ public inherited sharing class SalaryChangeService {
         Map<Id, Account> updateAccounts = new Map<Id, Account>();
 
         for (Contact contact: contacts) {
-            Account acc = new Account(Id = contact.AccountId, SalaryExpenses__c = 0);
-
-            updateAccounts.put(contact.AccountId, acc);
+            if (!updateAccounts.containsKey(contact.AccountId)){
+                Account acc = new Account(Id = contact.AccountId, SalaryExpenses__c = 0);
+                updateAccounts.put(contact.AccountId, acc);
+            }
         }
 
         List<Contact> recalculationContacts = [

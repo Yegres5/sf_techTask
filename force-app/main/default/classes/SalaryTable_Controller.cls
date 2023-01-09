@@ -53,9 +53,15 @@ public with sharing class SalaryTable_Controller {
         return res.getBody();
     }
 
+    @AuraEnabled
+    public static void updateAllAccountsExpenses() {
+        List<Contact> contacts = [SELECT AccountId FROM Contact];
+        SalaryChangeService.recalculateSalaryChange(contacts);
+    }
+
     // TestMethod do not support getContent call
     @AuraEnabled
-    public static String fetchUserSessionId(){
+    public static String fetchUserSessionId() {
         String sessionId = '';
         PageReference reportPage = Page.GetSessionIdVF;
         String vfContent = reportPage.getContent().toString();

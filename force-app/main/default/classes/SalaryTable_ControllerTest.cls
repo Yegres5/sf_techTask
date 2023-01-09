@@ -8,8 +8,6 @@ private class SalaryTable_ControllerTest {
     private final static String CURRENCY_UPDATE_ERROR = 'Errors during currency rates update';
     private static String TEST_USER_NAME = 'testsuser@testorg.com';
 
-
-
     @TestSetup
     static private void setup() {
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];

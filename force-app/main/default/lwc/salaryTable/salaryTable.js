@@ -7,6 +7,7 @@ import getExchangeRates from '@salesforce/apex/SalaryTable_Controller.getExchang
 import getCurrentUserSalary from '@salesforce/apex/SalaryTable_Controller.getCurrentUserSalary';
 import updateExchangeRates from '@salesforce/apex/SalaryTable_Controller.updateExchangeRates';
 import fetchUserSessionId from '@salesforce/apex/SalaryTable_Controller.fetchUserSessionId';
+import updateAllAccountsExpenses from '@salesforce/apex/SalaryTable_Controller.updateAllAccountsExpenses';
 
 const DATA_LABELS = {
     IsoCode: 'IsoCode',
@@ -55,6 +56,7 @@ export default class SalaryTable extends LightningElement {
         })
     }
 
+
     async handleClick(event){
         const sessionId = await fetchUserSessionId();
         await updateExchangeRates({sessionId: sessionId}).then(result=>{
@@ -62,6 +64,7 @@ export default class SalaryTable extends LightningElement {
         }).catch(error=>{
             console.log(error);
         })
+        await updateAllAccountsExpenses();
         await this.fillRatesTable();
     }
 }
