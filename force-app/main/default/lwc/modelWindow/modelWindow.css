@@ -1,17 +1,9 @@
 /**
  * Created by evgeny on 31.01.2023.
  */
-.no-horizontal-padding{
-    /* Removes SF Card Header and body padding/margin top/bottom only */
-    --slds-c-card-header-spacing-block-end: 0px;
-    --slds-c-card-header-spacing-block-start: 0px;
-    --slds-c-card-body-spacing-block-start: 0px;
-    --slds-c-card-body-spacing-block-end: 0px;
-}
 
-.title-custom-style{
-    color: blue;
-    font-family: "Papyrus", "Times New Roman";
-    width: 100%;
-    font-size: medium;
+.modal-close-position{
+    width: 3rem;
+    height: 3rem;
+    left: calc(100% - 3rem);
 }

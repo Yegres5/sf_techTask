@@ -1,0 +1,24 @@
+<!--
+ - Created by Evgenii Sazhnev on 02.03.2023.
+ -->
+
+<!-- Parent Model Window -->
+<template>
+    <lightning-button label='openModelWindow' onclick={handleClick}></lightning-button>
+    <div if:true={showModelWindow}>
+        <c-model-window onclose={handleClick} show-close-button=true>
+            <div slot="title">
+                <h2>Title.</h2>
+                <p>Regular text.</p>
+            </div>
+            <span slot="body">
+                <p>Body</p>
+                <p>text</p>
+                <p>.</p>
+            </span>
+            <div slot="footer">
+                <lightning-button label="changeCSS" onclick={handleClick}></lightning-button>
+            </div>
+        </c-model-window>
+    </div>
+</template>

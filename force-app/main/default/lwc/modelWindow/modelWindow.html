@@ -4,28 +4,25 @@
 
 <!-- Model Window -->
 <template>
-    <lightning-card class="no-horizontal-padding">
-        <div class="slds-p-around_small slds-text-align_center" if:true={pageTitle}>
-            <slot name="title" class="title-custom-style">
-                {pageTitle}
-            </slot>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-button_icon-inverse modal-close-position" label="closeButton" onclick={handleClick} if:true={showCloseButton}>
+                <lightning-icon icon-name="utility:close" size="medium" alternative-text="Indicates approval">
+                </lightning-icon>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+                <slot name="title"></slot>
+            </div>
+
+            <div class="slds-modal__content slds-p-around_medium">
+                <slot name="body"></slot>
+            </div>
+
+            <div class="slds-modal__footer">
+                <slot name="footer"></slot>
+            </div>
         </div>
-
-        <div class="slds-p-around_small">
-            {pageBody}
-        </div>
-
-        <lightning-layout slot="footer" if:true={isFooterVisible} horizontal-align="spread">
-            <lightning-layout-item flexibility="no-flex" if:true={cancelLabel}>
-                <lightning-button variant="destructive" label={cancelLabel} onclick={handleClick}></lightning-button>
-            </lightning-layout-item>
-
-            <lightning-layout-item class="slds-p-horizontal_x-small"></lightning-layout-item>
-
-            <lightning-layout-item flexibility="no-flex" if:true={successLabel}>
-                <lightning-button variant="success" label={successLabel} onclick={handleClick}></lightning-button>
-            </lightning-layout-item>
-        </lightning-layout>
-
-    </lightning-card>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
 </template>

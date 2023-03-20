@@ -7,28 +7,26 @@ import {api, LightningElement} from 'lwc';
 export default class ModelWindow extends LightningElement {
 
     @api
-    cancelLabel;
+    showCloseButton = false;
 
     @api
-    successLabel;
+    setTitleStyle(titleStyle) {
+        for (const [property, value] of Object.entries(titleStyle)) {
+            this.applyCSS(this.title, property, value);
+        }
+    }
 
-    @api
-    pageTitle;
+    get title() {
+        return this.template.querySelector('slot[name="title"]');
+    }
 
-    @api
-    pageBody = 'Default body';
-
-    get isFooterVisible(){
-        return this.cancelLabel !== undefined || this.successLabel !== undefined;
+    applyCSS(element, property, value) {
+        if (element) {
+            element.style[property] = value;
+        }
     }
 
     handleClick(event) {
-        const pressedButtonLabel = event.target.label;
-
-        const pageNumberEvent = new CustomEvent(
-            "buttonPressed",
-            { detail : { pressedButtonLabel }}
-        )
-        this.dispatchEvent(pageNumberEvent);
+        this.dispatchEvent(new CustomEvent("close", { target : event.target }));
     }
 }
